@@ -13,14 +13,11 @@ import java.util.Date;
 public class Member {
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @Column(name="USERNAME", length=20, nullable = false)
+    @Column(name="USERNAME")
     private String name;
-    @Enumerated(EnumType.STRING)
-    private MemberType memberType;
-    @Temporal(TemporalType.TIME)
-    private Date date;
     private int age;
 
-    @Transient
-    private int flag;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="TEAM_ID")
+    private Team team;
 }
