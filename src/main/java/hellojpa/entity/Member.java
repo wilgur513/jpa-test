@@ -10,6 +10,10 @@ import java.util.Date;
 @Setter
 @Getter
 @Entity
+@NamedQuery(
+    name="Member.findByUsername",
+    query="select m from Member m where m.name=:username"
+)
 public class Member {
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -20,4 +24,14 @@ public class Member {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="TEAM_ID")
     private Team team;
+
+    @Override
+    public String toString() {
+        return "Member{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", age=" + age +
+                ", team=" + team +
+                '}';
+    }
 }
